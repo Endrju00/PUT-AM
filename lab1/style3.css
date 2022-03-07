@@ -1,0 +1,10 @@
+#obraz1{
+    width: 100%;
+    height: 33%;
+}
+
+#obraz2, #obraz3, #obraz4{
+    width:calc(33.33%);
+    height:33%;
+    float:left;
+}
