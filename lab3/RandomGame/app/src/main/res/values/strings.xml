@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RandomGame</string>
+    <string name="button_send">Guess</string>
+    <string name="edit_message">Enter a number from  0 to 20</string>
+    <string name="title">Try to guess the number</string>
+    <string name="guess">Number of guesses:</string>
+    <string name="points">Points:</string>
+    <string name="win">Congratulations! You guessed the number :) Click "Guess" to play again.</string>
+</resources>
