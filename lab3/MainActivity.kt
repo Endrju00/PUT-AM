@@ -1,0 +1,140 @@
+package com.example.randomgame
+
+import android.content.DialogInterface
+import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+
+const val EXTRA_MESSAGE = "com.example.randomgame.MESSAGE"
+var FLAG = false
+var RAND = (0..20).random()
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        getRecord()
+    }
+
+    private fun setRecord(points: Int){
+        val pointsText = findViewById<TextView>(R.id.points)
+        val pointsNum = pointsText.text.toString().toInt() + points
+        findViewById<TextView>(R.id.points).apply { text = pointsNum.toString() }
+
+        val sharedScore = this.getSharedPreferences("com.example.myapplication.shared",0)
+        val edit = sharedScore.edit()
+
+        edit.putInt("score", pointsNum)
+        edit.apply()
+    }
+
+    fun getRecord(){
+        val sharedScore = this.getSharedPreferences("com.example.myapplication.shared",0)
+        findViewById<TextView>(R.id.points).apply { text = sharedScore.getInt("score", 0).toString() }
+    }
+
+    fun newGame(view: View) {
+        findViewById<TextView>(R.id.guesses).apply { text= 0.toString() }
+        RAND = (0..20).random()
+    }
+
+    fun restartPoints(view: View) {
+        findViewById<TextView>(R.id.points).apply { text= 0.toString() }
+        val sharedScore = this.getSharedPreferences("com.example.myapplication.shared",0)
+        val edit = sharedScore.edit()
+
+        edit.putInt("score", 0)
+        edit.apply()
+    }
+
+    /** Called when the user taps the Send button */
+    fun sendMessage(view: View) {
+        if (FLAG) {
+            findViewById<TextView>(R.id.guesses).apply { text= 0.toString() }
+            RAND = (0..20).random()
+        }
+        FLAG = false
+
+        // VALIDATE INPUT
+        val editText = findViewById<EditText>(R.id.editText)
+        val input = editText.text.toString()
+        val numeric = input.matches("-?\\d+(\\.\\d+)?".toRegex())
+        var number = 0
+
+        if (numeric) {
+            number = input.toInt()
+        }
+
+        if (number > 20 || number < 0 || !numeric) {
+            Toast.makeText(applicationContext, "Enter a number from 0 to 20.", Toast.LENGTH_SHORT).show()
+        } else {
+            // GUESSES
+            val guessesText = findViewById<TextView>(R.id.guesses)
+            val guesses = guessesText.text.toString().toInt() + 1
+            findViewById<TextView>(R.id.guesses).apply { text=guesses.toString() }
+
+            if (number == RAND) {
+                // CALCULATE POINTS
+                var points = 0
+                val guessesText = findViewById<TextView>(R.id.guesses)
+                when (guessesText.text.toString().toInt()) {
+                    1 -> {
+                        points = 5
+                    }
+                    in 2..4 -> {
+                        points = 3
+                    }
+                    in 5..6 -> {
+                        points = 2
+                    }
+                    in 7..10 -> {
+                        points = 1
+                    }
+                }
+
+                // ADD POINTS
+//                val pointsText = findViewById<TextView>(R.id.points)
+//                val pointsNum = pointsText.text.toString().toInt() + points
+//                findViewById<TextView>(R.id.points).apply { text = pointsNum.toString() }
+                setRecord(points)
+                // WINNER
+                val builder = AlertDialog.Builder(this@MainActivity)
+                builder.setTitle(title)
+                builder.setMessage("Congratulations! You won :) click GUESS to play again.")
+
+                builder.setPositiveButton("OK"){ dialogInterface: DialogInterface, i: Int ->}
+
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+                FLAG = true
+            } else {
+                // HINTS
+                if (number < RAND) {
+
+                    Toast.makeText(applicationContext, "The number is greater than yours", Toast.LENGTH_SHORT).show()
+                } else {
+
+                    Toast.makeText(applicationContext, "The number is less than yours", Toast.LENGTH_SHORT).show()
+                }
+
+                val guessesText = findViewById<TextView>(R.id.guesses)
+                if (guessesText.text.toString().toInt() >= 10) {
+                    // LOOSER
+                    val builder = AlertDialog.Builder(this@MainActivity)
+                    builder.setTitle(title)
+                    builder.setMessage("You lost :( click GUESS to play again.")
+
+                    builder.setPositiveButton("OK"){ dialogInterface: DialogInterface, i: Int ->}
+
+                    val dialog: AlertDialog = builder.create()
+                    dialog.show()
+                    FLAG = true
+                }
+            }
+        }
+    }
+}
