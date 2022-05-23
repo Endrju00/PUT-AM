@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
+import android.util.Log
+import android.widget.TextView
 
 class ListFragment : Fragment(R.layout.fragment_list) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,9 +35,21 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             "Droga 13",
             "Droga 14",
             "Droga 15",
+            )
 
-        )
         val adapter = ArrayAdapter(view.context, android.R.layout.simple_list_item_1, list)
         lv.adapter = adapter
+
+        lv.setOnItemClickListener { parent, view, position, id ->
+            val element = adapter.getItem(position)
+            replaceFragment(DetailFragment.newInstance(element.toString()))
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        fragmentTransaction.commit()
     }
 }
