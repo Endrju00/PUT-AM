@@ -12,7 +12,7 @@
 * ### Lab 6
   #### Na podstawie przykładowego JSON opracować aplikację wyświetlającą dane z Internetu.
 * ### Lab 7
-  #### Wykorzystanie sensorów w aplikacji
+  #### Wykorzystanie sensorów w aplikacji.
 * ### Lab 8
   #### Celem zadania jest przygotowanie aplikacji typu lista-szczegóły z zastosowaniem fragmentów. Aplikacja ma być przeznaczona dla osób uprawiających jogging, turystkę pieszą, nordic walking, jazdę na rowerze itp., czyli aktywności fizycznej polegającej na pokonywaniu pewnej trasy.  
 
