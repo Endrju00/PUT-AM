@@ -35,6 +35,11 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             "Droga 13",
             "Droga 14",
             "Droga 15",
+            "Droga 16",
+            "Droga 17",
+            "Droga 18",
+            "Droga 19",
+            "Droga 20",
             )
 
         val adapter = ArrayAdapter(view.context, android.R.layout.simple_list_item_1, list)
@@ -47,9 +52,15 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     }
 
     private fun replaceFragment(fragment: Fragment) {
+        val smallestWidth = resources.configuration.smallestScreenWidthDp
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment_container, fragment)
+
+        if (smallestWidth < 720)
+            fragmentTransaction.replace(R.id.fragment_container, fragment)
+        else
+            fragmentTransaction.replace(R.id.fragment_container2, fragment)
+
         fragmentTransaction.commit()
     }
 }

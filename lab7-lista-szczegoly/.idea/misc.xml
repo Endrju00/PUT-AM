@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Git Repos/PUT-AM/lab7-lista-szczegoly/app/src/main/res/layout-sw320dp/activity_main.xml" value="0.176" />
+        <entry key="..\:/Git Repos/PUT-AM/lab7-lista-szczegoly/app/src/main/res/layout-sw720dp/activity_main.xml" value="0.1875" />
+        <entry key="..\:/Git Repos/PUT-AM/lab7-lista-szczegoly/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Git Repos/PUT-AM/lab7-lista-szczegoly/app/src/main/res/layout/fragment_list.xml" value="0.1" />
         <entry key="..\:/git/PUT-AM/lab7-lista-szczegoly/app/src/main/res/layout/activity_detail.xml" value="0.3828125" />
         <entry key="..\:/git/PUT-AM/lab7-lista-szczegoly/app/src/main/res/layout/activity_main.xml" value="0.3319746376811594" />
         <entry key="..\:/git/PUT-AM/lab7-lista-szczegoly/app/src/main/res/layout/fragment_detail.xml" value="0.3319746376811594" />
