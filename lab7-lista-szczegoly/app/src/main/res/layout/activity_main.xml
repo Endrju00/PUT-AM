@@ -10,13 +10,13 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="772dp"
-        android:layout_weight="0.2" />
+        android:layout_height="match_parent"
+        android:layout_weight="0.15" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.7"
+        android:layout_weight="0.8"
         android:onClick="goBack"
         android:text="GO BACK"
         android:textSize="20dp" />
