@@ -16,4 +16,12 @@
         android:background="#4287f5"
         android:text="@string/detail" />
 
+    <TextView
+        android:id="@+id/detail_textview2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:text="@string/detail" />
+
 </LinearLayout>
