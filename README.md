@@ -2,14 +2,16 @@
   ### Aplikacje mobilne laboratoria
 
 ## Spis treści
-* [ ] [Lab 1](#lab-1)
-* [ ] [Lab 2](#lab-2)
-* [ ] [Lab 3](#lab-3)
-* [ ] [Lab 4-5](#lab-4-5)
-* [ ] [Lab 6](#lab-6)
-* [ ] [Lab 7](#lab-7)
-* [ ] [Lab 8](#lab-8)
-* [ ] [Lab 9](#lab-9)
+* [x] [Lab 1](#lab-1)
+* [x] [Lab 2](#lab-2)
+* [x] [Lab 3](#lab-3)
+* [x] [Lab 4-5](#lab-4-5)
+* [x] [Lab 6](#lab-6)
+* [x] [Lab 7](#lab-7)
+* [x] [Lab 8](#lab-8)
+* [x] [Lab 9](#lab-9)
+* [ ] [Lab 10-11](#lab-10-11)
+* [ ] [Lab 12](#lab-12)
 
 ## Zadania
 * ### Lab 1
@@ -28,6 +30,10 @@
   #### Celem zadania jest przygotowanie aplikacji typu lista-szczegóły z zastosowaniem fragmentów. Aplikacja ma być przeznaczona dla osób uprawiających jogging, turystkę pieszą, nordic walking, jazdę na rowerze itp., czyli aktywności fizycznej polegającej na pokonywaniu pewnej trasy.
 * ### Lab 9
   #### Celem zadania jest rozwinięcie aplikacji typu lista-szczegóły przygotowanej na poprzednich zajęciach o fragment dynamiczny. Do aplikacji należy dodać fragment obsługujący pomiar czasu.
+* ### Lab 10-11
+  #### Celem zadania jest kontynuacja aplikacji z poprzednich dwóch zajęć i zmiana jej strony wizualnej oraz niektórych mechanizmów nawigacyjnych. Ekran listy ma się składać z co najmniej trzech kart. Pierwsza karta ma być kartą główną aplikacji, a pozostałe mają być kartami kategorii. Karta główna będzie informować o  przeznaczeniu aplikacji, a karty kategorii mogą np. dzielić trasy wg trudności (łatwe, trudne, średnie), długości (krótkie, średnie, długie, bardzo długie), lokalizacji (miejskie, terenowe) lub jakiegokolwiek innego sensownego podziału, który przyjdzie Wam do głowy.
+* ### Lab 12
+  #### Celem zadania jest najlepiej modyfikacja poprzednio przygotowanej aplikacji poprzez dodanie animacji wykonywanej w trakcie uruchamiania aplikacji.
   
 
 
