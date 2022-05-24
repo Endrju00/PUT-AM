@@ -26,10 +26,21 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         startStopButton = view.findViewById(R.id.startStopButton)
         resetButton = view.findViewById(R.id.resetButton)
+        timeTv = view.findViewById(R.id.timeTV)
+
+        // If screen was rotated the instance is recreated so we need to restore values
+        if (savedInstanceState != null) {
+            startStopButton.text = savedInstanceState.getString("startStopButtonText")
+            startStopButton.icon = requireActivity().getDrawable(savedInstanceState.getInt("startStopButtonIconId"))
+            timerStarted = savedInstanceState.getBoolean("timerStarted")
+            time = savedInstanceState.getDouble("time")
+            timeTv.text = getTimeStringFromDouble(time)
+
+        }
+
         val updateTime: BroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
                 time = intent.getDoubleExtra(TimerService.TIMER_EXTRA, 0.0)
-                timeTv = view.findViewById(R.id.timeTV)
                 timeTv.text = getTimeStringFromDouble(time)
             }
         }
@@ -79,4 +90,17 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
     }
 
     private fun makeTimeString(hour: Int, min: Int, sec: Int): String = String.format("%02d:%02d:%02d", hour, min, sec)
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save timer data before screen rotate
+        if (timerStarted)
+            outState.putInt("startStopButtonIconId", R.drawable.ic_baseline_pause_24)
+        else
+            outState.putInt("startStopButtonIconId", R.drawable.ic_baseline_play_arrow_24)
+
+        outState.putString("startStopButtonText", startStopButton.text.toString())
+        outState.putBoolean("timerStarted", timerStarted)
+        outState.putDouble("time", time)
+    }
 }
