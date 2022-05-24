@@ -22,10 +22,12 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
     private lateinit var timeTv: TextView
     private lateinit var startStopButton: MaterialButton
     private lateinit var resetButton: MaterialButton
+    private lateinit var saveButton: MaterialButton
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         startStopButton = view.findViewById(R.id.startStopButton)
         resetButton = view.findViewById(R.id.resetButton)
+        saveButton = view.findViewById(R.id.saveButton)
         timeTv = view.findViewById(R.id.timeTV)
 
         // If screen was rotated the instance is recreated so we need to restore values
@@ -47,6 +49,7 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
 
         startStopButton.setOnClickListener { startStopTimer() }
         resetButton.setOnClickListener { resetTimer() }
+        saveButton.setOnClickListener { stopTimer() }
 
         serviceIntent = Intent(requireActivity().applicationContext, TimerService::class.java)
         requireActivity().registerReceiver(updateTime, IntentFilter(TimerService.TIMER_UPDATED))
@@ -68,7 +71,7 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
     private fun startTimer() {
         serviceIntent.putExtra(TimerService.TIMER_EXTRA, time)
         requireActivity().startService(serviceIntent)
-        startStopButton.text = "Stop"
+        startStopButton.text = "  Stop"
         startStopButton.icon = requireActivity().getDrawable(R.drawable.ic_baseline_pause_24)
         timerStarted = true
     }
