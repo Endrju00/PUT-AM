@@ -29,13 +29,23 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textView = view.findViewById<TextView>(R.id.detail_textview)
         val textView2 = view.findViewById<TextView>(R.id.detail_textview2)
+        val textView3 = view.findViewById<TextView>(R.id.detail_textview3)
+        val textView4 = view.findViewById<TextView>(R.id.detail_textview4)
         textView.text = this.arguments?.getString("route")
         textView2.text = this.arguments?.getString("description")
+
+        val sharedTime = requireActivity().getSharedPreferences("com.example.listdetail.shared",0)
+        textView3.text = "Best time: ${sharedTime.getString(textView.text.toString(), "None")}"
+        textView4.text = "Last time: ${sharedTime.getString("${textView.text.toString()} last", "None")}"
 
         if (savedInstanceState == null) {
             parentFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<StopWatchFragment>(R.id.fragment_container3)
+                add<StopWatchFragment>(
+                    R.id.fragment_container3,
+                    "SS",
+                    Bundle().apply { putString("route", textView.text.toString()) }
+                )
             }
         }
 

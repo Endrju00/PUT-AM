@@ -29,7 +29,25 @@
         android:layout_height="match_parent"
         android:textSize="20dp"
         android:gravity="center"
-        android:layout_weight="0.5"
+        android:layout_weight="0.7"
         android:text="@string/detail" />
+
+    <TextView
+        android:id="@+id/detail_textview3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_weight="0.7"
+        android:text="Record" />
+
+    <TextView
+        android:id="@+id/detail_textview4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_weight="0.7"
+        android:text="Last" />
 
 </LinearLayout>

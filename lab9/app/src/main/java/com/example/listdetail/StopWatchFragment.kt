@@ -6,12 +6,13 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.material.button.MaterialButton
+import java.lang.Float.POSITIVE_INFINITY
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.roundToInt
 
 
@@ -37,7 +38,6 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
             timerStarted = savedInstanceState.getBoolean("timerStarted")
             time = savedInstanceState.getDouble("time")
             timeTv.text = getTimeStringFromDouble(time)
-
         }
 
         val updateTime: BroadcastReceiver = object : BroadcastReceiver() {
@@ -49,7 +49,24 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
 
         startStopButton.setOnClickListener { startStopTimer() }
         resetButton.setOnClickListener { resetTimer() }
-        saveButton.setOnClickListener { stopTimer() }
+        saveButton.setOnClickListener {
+            stopTimer()
+            val route = this.arguments?.getString("route")
+            val sharedTime = requireActivity().getSharedPreferences("com.example.listdetail.shared",0)
+            val record = sharedTime.getFloat("$route time", POSITIVE_INFINITY)
+            val sdf = SimpleDateFormat("dd/M/yyyy")
+            val currentDate = sdf.format(Date())
+
+            val edit = sharedTime.edit()
+            if (record > time.toFloat()) {
+                edit.putString(route, timeTv.text.toString() + " at " + currentDate)
+                edit.putFloat("$route time", time.toFloat())
+                edit.apply()
+                Toast.makeText(view.context, "This is the best time ever for $route! Time has been saved.", Toast.LENGTH_LONG).show()
+            }
+            edit.putString("$route last", timeTv.text.toString() + " at " + currentDate)
+            edit.apply()
+        }
 
         serviceIntent = Intent(requireActivity().applicationContext, TimerService::class.java)
         requireActivity().registerReceiver(updateTime, IntentFilter(TimerService.TIMER_UPDATED))
