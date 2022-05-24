@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -29,5 +31,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         val textView2 = view.findViewById<TextView>(R.id.detail_textview2)
         textView.text = this.arguments?.getString("route")
         textView2.text = this.arguments?.getString("description")
+
+        if (savedInstanceState == null) {
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<StopWatchFragment>(R.id.fragment_container3)
+            }
+        }
+
     }
 }

@@ -16,12 +16,20 @@
         android:background="#4287f5"
         android:text="@string/detail" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.5" />
+
     <TextView
         android:id="@+id/detail_textview2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="20dp"
         android:gravity="center"
+        android:layout_weight="0.5"
         android:text="@string/detail" />
 
 </LinearLayout>

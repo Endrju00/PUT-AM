@@ -48,8 +48,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     private fun replaceFragment(fragment: Fragment) {
         val smallestWidth = resources.configuration.smallestScreenWidthDp
-        val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragmentTransaction = parentFragmentManager.beginTransaction()
 
         if (smallestWidth < 720)
             fragmentTransaction.replace(R.id.fragment_container, fragment)
