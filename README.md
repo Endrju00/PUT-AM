@@ -14,6 +14,8 @@
 * ### Lab 7
   #### Wykorzystanie sensorów w aplikacji.
 * ### Lab 8
-  #### Celem zadania jest przygotowanie aplikacji typu lista-szczegóły z zastosowaniem fragmentów. Aplikacja ma być przeznaczona dla osób uprawiających jogging, turystkę pieszą, nordic walking, jazdę na rowerze itp., czyli aktywności fizycznej polegającej na pokonywaniu pewnej trasy.  
+  #### Celem zadania jest przygotowanie aplikacji typu lista-szczegóły z zastosowaniem fragmentów. Aplikacja ma być przeznaczona dla osób uprawiających jogging, turystkę pieszą, nordic walking, jazdę na rowerze itp., czyli aktywności fizycznej polegającej na pokonywaniu pewnej trasy.
+* ### Lab 9
+  #### Celem zadania jest rozwinięcie aplikacji typu lista-szczegóły przygotowanej na poprzednich zajęciach o fragment dynamiczny. Do aplikacji należy dodać fragment obsługujący pomiar czasu.
 
 
