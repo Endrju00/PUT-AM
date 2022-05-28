@@ -4,13 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
+import android.widget.Toast
+import androidx.fragment.app.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
+    private lateinit var rotateOpen: Animation
+    private lateinit var rotateClose: Animation
+    private lateinit var fromBottom: Animation
+    private lateinit var toBottom: Animation
+    private lateinit var mainBtn: FloatingActionButton
+    private lateinit var statBtn: FloatingActionButton
+    private lateinit var timerBtn: FloatingActionButton
+    private var clicked = false
+
     companion object {
         fun newInstance(route: String, description: String): DetailFragment {
             val fragment = DetailFragment()
@@ -49,5 +60,66 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             }
         }
 
+        rotateOpen = AnimationUtils.loadAnimation(view.context, R.anim.rotate_open_anim)
+        rotateClose = AnimationUtils.loadAnimation(view.context, R.anim.rotate_close_anim)
+        fromBottom = AnimationUtils.loadAnimation(view.context, R.anim.from_bottom_anim)
+        toBottom = AnimationUtils.loadAnimation(view.context, R.anim.to_bottom)
+
+        mainBtn = view.findViewById(R.id.main_btn)
+        statBtn = view.findViewById(R.id.stat_btn)
+        timerBtn = view.findViewById(R.id.timer_btm)
+
+        mainBtn.setOnClickListener {
+            onMainButtonClicked()
+        }
+
+        statBtn.setOnClickListener {
+            textView3.visibility = if (textView3.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
+            textView4.visibility = if (textView4.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
+        }
+        val fragmentContainer = view.findViewById<FragmentContainerView>(R.id.fragment_container3)
+        timerBtn.setOnClickListener {
+            fragmentContainer.visibility = if (fragmentContainer.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
+        }
+
+    }
+
+    private fun onMainButtonClicked() {
+        setVisibility()
+        setAnimation()
+        setClickable()
+        clicked = !clicked
+    }
+
+    private fun setAnimation() {
+        if (clicked) {
+            statBtn.visibility = View.INVISIBLE
+            timerBtn.visibility = View.INVISIBLE
+        } else {
+            statBtn.visibility = View.VISIBLE
+            timerBtn.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setVisibility() {
+        if (clicked) {
+            statBtn.startAnimation(toBottom)
+            timerBtn.startAnimation(toBottom)
+            mainBtn.startAnimation(rotateClose)
+        } else {
+            statBtn.startAnimation(fromBottom)
+            timerBtn.startAnimation(fromBottom)
+            mainBtn.startAnimation(rotateOpen)
+        }
+    }
+
+    private fun setClickable() {
+        if (clicked) {
+            statBtn.isClickable = false
+            timerBtn.isClickable = false
+        } else {
+            statBtn.isClickable = true
+            timerBtn.isClickable = true
+        }
     }
 }

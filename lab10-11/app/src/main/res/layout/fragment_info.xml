@@ -23,6 +23,6 @@
         android:textColor="@color/black"
         android:padding="10dp"
         android:textSize="20sp"
-        android:text="The application is used to measure the time on individual routes. \n\nTo select a route, go to the Easy routes or Difficult routes tab depending on the required degree of difficulty. \n\n The application was created for the subject Mobile applications \nat the Poznań University of Technology \n\n\n Authors:\n\nAndrzej Kapczyński\nJędrzej Smok" />
+        android:text="The application is used to measure the time on individual routes. \n\nTo select a route, go to the Easy routes or Difficult routes tab depending on the required degree of difficulty. \n\n The application was created for the subject Mobile applications \nat the Poznań University of Technology \n\n Authors:\nAndrzej Kapczyński \nJędrzej Smok" />
 
 </LinearLayout>
