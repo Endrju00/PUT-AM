@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="#caf0f8"
+    android:background="@color/backgroundColor"
     tools:context=".ListFragment">
 
     <TextView
@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:gravity="center"
-        android:textColor="#FFFF"
-        android:background="#4287f5"
+        android:textColor="@color/textColor"
+        android:background="@color/primaryColor"
         android:text="@string/list" />
 
     <androidx.recyclerview.widget.RecyclerView

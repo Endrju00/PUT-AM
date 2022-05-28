@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#caf0f8"
+    android:background="@color/backgroundColor"
     tools:context=".InfoFragment">
 
     <TextView
@@ -12,17 +12,31 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:gravity="center"
-        android:textColor="#FFFF"
-        android:background="#4287f5"
+        android:textColor="@color/textColor"
+        android:background="@color/primaryColor"
         android:text="About the app" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/infoColor"
         android:padding="10dp"
         android:textSize="20sp"
+        android:layout_weight="0.2"
         android:text="The application is used to measure the time on individual routes. \n\nTo select a route, go to the Easy routes or Difficult routes tab depending on the required degree of difficulty. \n\n The application was created for the subject Mobile applications \nat the Poznań University of Technology \n\n Authors:\nAndrzej Kapczyński \nJędrzej Smok" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:buttonTint="@color/secondaryColor"
+        android:textColor="@color/infoColor"
+        android:textSize="20dp"
+        android:text="Dark mode" />
+
 
 </LinearLayout>

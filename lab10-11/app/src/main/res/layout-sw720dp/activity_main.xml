@@ -13,9 +13,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:menu="@menu/menu"
-        android:background="#4287f5"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"
+        android:background="@color/primaryColor"
+        app:itemTextColor="@color/textColor"
+        app:itemIconTint="@color/textColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
 
