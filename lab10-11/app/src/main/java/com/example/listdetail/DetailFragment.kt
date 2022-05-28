@@ -22,6 +22,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private lateinit var timerBtn: FloatingActionButton
     private var clicked = false
 
+    private lateinit var textView3: TextView
+    private lateinit var textView4: TextView
+    private lateinit var fragmentContainer: FragmentContainerView
+
     companion object {
         fun newInstance(route: String, description: String): DetailFragment {
             val fragment = DetailFragment()
@@ -40,8 +44,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textView = view.findViewById<TextView>(R.id.detail_textview)
         val textView2 = view.findViewById<TextView>(R.id.detail_textview2)
-        val textView3 = view.findViewById<TextView>(R.id.detail_textview3)
-        val textView4 = view.findViewById<TextView>(R.id.detail_textview4)
+        textView3 = view.findViewById(R.id.detail_textview3)
+        textView4 = view.findViewById(R.id.detail_textview4)
+        fragmentContainer = view.findViewById(R.id.fragment_container3)
+
         textView.text = this.arguments?.getString("route")
         textView2.text = this.arguments?.getString("description")
 
@@ -58,6 +64,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     Bundle().apply { putString("route", textView.text.toString()) }
                 )
             }
+        } else {
+            textView3.visibility = savedInstanceState.getInt("statsVisibility")
+            textView4.visibility = savedInstanceState.getInt("statsVisibility")
+            fragmentContainer.visibility = savedInstanceState.getInt("timerVisibility")
         }
 
         rotateOpen = AnimationUtils.loadAnimation(view.context, R.anim.rotate_open_anim)
@@ -77,11 +87,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             textView3.visibility = if (textView3.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
             textView4.visibility = if (textView4.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
         }
-        val fragmentContainer = view.findViewById<FragmentContainerView>(R.id.fragment_container3)
+
         timerBtn.setOnClickListener {
             fragmentContainer.visibility = if (fragmentContainer.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
         }
 
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        // Save timer data before screen rotate
+        outState.putInt("timerVisibility", fragmentContainer.visibility)
+        outState.putInt("statsVisibility", textView3.visibility)
     }
 
     private fun onMainButtonClicked() {

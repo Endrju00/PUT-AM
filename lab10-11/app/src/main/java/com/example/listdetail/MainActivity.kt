@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        replaceFragment(InfoFragment())
+        if (savedInstanceState == null) {
+            replaceFragment(InfoFragment())
+        }
 
         bottomNavigation = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener {
