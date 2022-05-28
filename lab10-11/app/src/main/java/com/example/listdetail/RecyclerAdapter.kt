@@ -26,8 +26,15 @@ class RecyclerAdapter(private val routes: Array<String>): RecyclerView.Adapter<R
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-        holder.itemTitle.text = routes[position]
-        holder.itemImage.setImageResource(R.drawable.route)
+        val route = routes[position]
+        holder.itemTitle.text = route
+
+        val number = route.filter { it.isDigit() }.toInt()
+
+        if (number % 2 == 0)
+            holder.itemImage.setImageResource(R.drawable.route)
+        else
+            holder.itemImage.setImageResource(R.drawable.route2)
     }
 
     override fun getItemCount(): Int {
