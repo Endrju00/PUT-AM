@@ -35,8 +35,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         textView2.text = this.arguments?.getString("description")
 
         val sharedTime = requireActivity().getSharedPreferences("com.example.listdetail.shared",0)
-        textView3.text = "Best time: ${sharedTime.getString(textView.text.toString(), "None")}"
-        textView4.text = "Last time: ${sharedTime.getString("${textView.text.toString()} last", "None")}"
+        "Best time: ${sharedTime.getString(textView.text.toString(), "None")}".also { textView3.text = it }
+        "Last time: ${sharedTime.getString("${textView.text} last", "None")}".also { textView4.text = it }
 
         if (savedInstanceState == null) {
             parentFragmentManager.commit {

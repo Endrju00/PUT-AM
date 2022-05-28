@@ -10,13 +10,25 @@ import androidx.fragment.app.Fragment
 
 
 class ListFragment : Fragment(R.layout.fragment_list) {
+    companion object {
+        fun newInstance(difficulty: String): ListFragment {
+            val fragment = ListFragment()
+            val args = Bundle()
+            args.putString("difficulty", difficulty)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return LayoutInflater.from(container?.context).inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val lv = view.findViewById<ListView>(R.id.listview)
-        val routes = arrayOf(
+        val difficulty = this.arguments?.getString("difficulty")
+
+        var routes = arrayOf(
             "Droga 1", "Droga 2", "Droga 3", "Droga 4", "Droga 5",
             "Droga 6", "Droga 7", "Droga 8", "Droga 9", "Droga 10",
             "Droga 11", "Droga 12", "Droga 13", "Droga 14", "Droga 15",
@@ -32,15 +44,31 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             "Droga 19" to "Opis drogi 19", "Droga 20" to "Opis drogi 20",
         )
 
+        when (difficulty) {
+            "easy" -> routes = getEasyRoutes(routes)
+            "difficult" -> routes = getDifficultRoutes(routes)
+        }
 
         val adapter = ArrayAdapter(view.context, android.R.layout.simple_list_item_1, routes)
         lv.adapter = adapter
 
-        lv.setOnItemClickListener { parent, view, position, id ->
+        lv.setOnItemClickListener { _, _, position, _ ->
             val route = adapter.getItem(position)
             val description = descriptions[route]
             replaceFragment(DetailFragment.newInstance(route.toString(), description.toString()))
         }
+    }
+
+    private fun getDifficultRoutes(routes: Array<String>): Array<String> {
+        val list = mutableListOf<String>()
+        routes.forEachIndexed{ i, v -> if (i%2==0) list.add(v)}
+        return list.toTypedArray()
+    }
+
+    private fun getEasyRoutes(routes: Array<String>): Array<String> {
+        val list = mutableListOf<String>()
+        routes.forEachIndexed{ i, v -> if (i%2==1) list.add(v)}
+        return list.toTypedArray()
     }
 
     private fun replaceFragment(fragment: Fragment) {
