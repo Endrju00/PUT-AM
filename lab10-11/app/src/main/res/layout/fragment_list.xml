@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="#caf0f8"
     tools:context=".ListFragment">
 
     <TextView
@@ -15,10 +16,9 @@
         android:background="#4287f5"
         android:text="@string/list" />
 
-    <ListView
-        android:id="@+id/listview"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:background="#e3e8e8"
         android:layout_height="match_parent"/>
 
 
