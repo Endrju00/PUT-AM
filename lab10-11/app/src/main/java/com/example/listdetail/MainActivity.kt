@@ -13,12 +13,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        replaceFragment(ListFragment())
+        replaceFragment(InfoFragment())
 
         bottomNavigation = findViewById(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.ic_home -> replaceFragment(ListFragment())
+                R.id.ic_home -> replaceFragment(InfoFragment())
                 R.id.ic_easy -> replaceFragment(easyRoutes)
                 R.id.ic_difficult -> replaceFragment(difficultRoutes)
             }

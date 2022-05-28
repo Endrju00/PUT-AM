@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#e3e8e8"
+    tools:context=".InfoFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:background="#4287f5"
+        android:text="About the app" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:text="The application is used to measure the time on individual routes. \n\nTo select a route, go to the Easy routes or Difficult routes tab depending on the required degree of difficulty. \n\n The application was created for the subject Mobile applications \nat the Poznań University of Technology \n\n\n Authors:\n\nAndrzej Kapczyński\nJędrzej Smok" />
+
+</LinearLayout>
