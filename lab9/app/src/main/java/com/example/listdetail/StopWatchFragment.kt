@@ -73,10 +73,10 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
     }
 
     private fun resetTimer() {
-        if (timerStarted)
-            stopTimer()
         time = 0.0
         timeTv.text = getTimeStringFromDouble(time)
+        if (timerStarted)
+            stopTimer()
     }
 
     private fun startStopTimer() {
