@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ListDetail</string>
+    <string name="list">Choose a route</string>
+    <string name="detail">Detail</string>
+</resources>
