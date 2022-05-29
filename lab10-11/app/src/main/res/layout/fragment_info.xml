@@ -19,7 +19,7 @@
         android:gravity="center"
         android:text="About the app"
         android:textColor="@color/textColor"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <ScrollView
         android:id="@+id/scrollinfo"
@@ -55,7 +55,7 @@
         android:buttonTint="@color/secondaryColor"
         android:text="Dark mode"
         android:textColor="@color/infoColor"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
