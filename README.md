@@ -10,7 +10,7 @@
 * [x] [Lab 7](#lab-7)
 * [x] [Lab 8](#lab-8)
 * [x] [Lab 9](#lab-9)
-* [ ] [Lab 10-11](#lab-10-11)
+* [x] [Lab 10-11](#lab-10-11)
 * [ ] [Lab 12](#lab-12)
 
 ## Zadania
