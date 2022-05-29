@@ -6,7 +6,6 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.lang.Math.abs
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), GestureDetector.OnGestureListener {
     private val easyRoutes = ListFragment.newInstance("easy")
