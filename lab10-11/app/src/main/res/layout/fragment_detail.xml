@@ -25,68 +25,85 @@
         android:id="@+id/fragment_container3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHeight_percent="0.35"
         android:layout_gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/detail_textview"
         app:layout_constraintLeft_toLeftOf="parent"
         android:visibility="invisible"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <TextView
-        android:id="@+id/detail_textview2"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
-        android:textSize="20dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/fragment_container3"
+        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_container3"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/detail" />
+        app:layout_constraintRight_toRightOf="parent">
 
-    <TextView
-        android:id="@+id/detail_textview3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:text="Record"
-        app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintTop_toBottomOf="@id/detail_textview2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:visibility="invisible"
-        android:textColor="@color/infoColor"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/detail_textview4"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:text="Last"
-        app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintTop_toBottomOf="@id/detail_textview3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:visibility="invisible"
-        android:textColor="@color/infoColor"/>
+            <TextView
+                android:id="@+id/detail_textview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="@string/detail" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/main_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/secondaryColor"
-        android:background="@color/backgroundColor"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_baseline_directions_run_24"
-        app:tint="@color/textColor"
-        app:borderWidth="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/detail_textview3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:text="Record"
+                    app:layout_constraintTop_toBottomOf="@id/detail_textview2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:visibility="invisible"
+                    android:textColor="@color/infoColor"/>
+
+                <TextView
+                    android:id="@+id/detail_textview4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:text="Last"
+                    app:layout_constraintTop_toBottomOf="@id/detail_textview3"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:visibility="invisible"
+                    android:textColor="@color/infoColor"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/main_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:background="@color/backgroundColor"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_directions_run_24"
+            app:tint="@color/textColor"
+            app:borderWidth="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/stat_btn"
