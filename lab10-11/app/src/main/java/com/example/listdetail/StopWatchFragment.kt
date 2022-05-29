@@ -66,6 +66,7 @@ class StopWatchFragment : Fragment(R.layout.fragment_stop_watch) {
             }
             edit.putString("$route last", timeTv.text.toString() + " at " + currentDate)
             edit.apply()
+            Toast.makeText(view.context, "The $route has been completed! Time has been saved.", Toast.LENGTH_LONG).show()
         }
 
         serviceIntent = Intent(requireActivity().applicationContext, TimerService::class.java)
