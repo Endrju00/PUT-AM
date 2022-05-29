@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.*
@@ -27,11 +28,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private lateinit var fragmentContainer: FragmentContainerView
 
     companion object {
-        fun newInstance(route: String, description: String): DetailFragment {
+        fun newInstance(route: String, description: String, imageId: Int): DetailFragment {
             val fragment = DetailFragment()
             val args = Bundle()
             args.putString("route", route)
             args.putString("description", description)
+            args.putInt("imageId", imageId)
             fragment.arguments = args
             return fragment
         }
@@ -44,12 +46,16 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textView = view.findViewById<TextView>(R.id.detail_textview)
         val textView2 = view.findViewById<TextView>(R.id.detail_textview2)
+        val imageView = view.findViewById<ImageView>(R.id.detailimage)
         textView3 = view.findViewById(R.id.detail_textview3)
         textView4 = view.findViewById(R.id.detail_textview4)
         fragmentContainer = view.findViewById(R.id.fragment_container3)
 
         textView.text = this.arguments?.getString("route")
         textView2.text = this.arguments?.getString("description")
+        val imageId = this.arguments?.getInt("imageId")
+        val image = if (imageId == 1) R.drawable.route else R.drawable.route2
+        imageView.setImageResource(image)
 
         val sharedTime = requireActivity().getSharedPreferences("com.example.listdetail.shared",0)
         "Best time: ${sharedTime.getString(textView.text.toString(), "None")}".also { textView3.text = it }
