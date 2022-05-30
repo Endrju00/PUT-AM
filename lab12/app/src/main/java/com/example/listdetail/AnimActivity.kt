@@ -1,5 +1,6 @@
 package com.example.listdetail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
@@ -11,9 +12,9 @@ class AnimActivity : AppCompatActivity() {
         var fragment = fm.findFragmentById(R.id.fragment_container)
         if (fragment == null){
             // here you can change animation
-//            fragment = ShoeFragment.newInstance()
+            fragment = ShoeFragment.newInstance()
 //            fragment = TextFragment.newInstance()
-            fragment = WatchFragment.newInstance()
+//            fragment = WatchFragment.newInstance()
             fm.beginTransaction().add(R.id.fragment_container, fragment).commit()
         }
     }

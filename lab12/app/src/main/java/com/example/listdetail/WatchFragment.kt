@@ -1,7 +1,10 @@
 package com.example.listdetail
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +43,13 @@ class WatchFragment: Fragment(R.layout.fragment_watch) {
         var  arrowRotateAnim = ObjectAnimator.ofFloat(mArrowView, "rotation", -50f, 1038f)
         arrowRotateAnim.duration = duration
         var animatorSet = AnimatorSet()
+        animatorSet.addListener(object: AnimatorListenerAdapter(){
+            override fun onAnimationEnd(animation: Animator?) {
+                // change activity
+                val intent = Intent(view.context, MainActivity::class.java)
+                startActivity(intent)
+            }
+        })
         animatorSet.play(arrowRotateAnim)
         animatorSet.start()
     }

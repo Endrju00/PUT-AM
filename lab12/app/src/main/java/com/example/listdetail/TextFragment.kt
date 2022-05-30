@@ -1,7 +1,10 @@
 package com.example.listdetail
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +48,13 @@ class TextFragment: Fragment(R.layout.fragment_shoe) {
         var textColorAnimator = ObjectAnimator.ofFloat(mTextView, "alpha", 0f, 1f)
         textColorAnimator.duration = duration / 2
         var animatorSet = AnimatorSet()
+        animatorSet.addListener(object: AnimatorListenerAdapter(){
+            override fun onAnimationEnd(animation: Animator?) {
+                // change activity
+                val intent = Intent(view.context, MainActivity::class.java)
+                startActivity(intent)
+            }
+        })
         animatorSet.play(shoeScaleAnimator).with(shoeYAnimator).before(textColorAnimator)
         animatorSet.start()
     }

@@ -1,7 +1,10 @@
 package com.example.listdetail
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +51,13 @@ class ShoeFragment: Fragment(R.layout.fragment_shoe) {
         var shoeYAnimator = ObjectAnimator.ofFloat(mShoeView, "translationY", -150f, 0f)
         shoeYAnimator.duration = duration
         var animatorSet = AnimatorSet()
+        animatorSet.addListener(object: AnimatorListenerAdapter(){
+            override fun onAnimationEnd(animation: Animator?) {
+                // change activity
+                val intent = Intent(view.context, MainActivity::class.java)
+                startActivity(intent)
+            }
+        })
         animatorSet.play(heightAnimator).with(shoeScaleAnimator).with(shoeXAnimator).with(shoeYAnimator)
         animatorSet.start()
     }
