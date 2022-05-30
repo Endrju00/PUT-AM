@@ -8,14 +8,27 @@ class AnimActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anim)
-        var fm = supportFragmentManager
-        var fragment = fm.findFragmentById(R.id.fragment_container)
-        if (fragment == null){
-            // here you can change animation
-            fragment = ShoeFragment.newInstance()
-//            fragment = TextFragment.newInstance()
-//            fragment = WatchFragment.newInstance()
-            fm.beginTransaction().add(R.id.fragment_container, fragment).commit()
+
+        val thread = Thread {
+            run{
+                val fm = supportFragmentManager
+                var fragment = fm.findFragmentById(R.id.fragment_container)
+                if (fragment == null){
+                    // here you can change animation
+                    fragment = ShoeFragment.newInstance()
+//                    fragment = TextFragment.newInstance()
+//                    fragment = WatchFragment.newInstance()
+                    fm.beginTransaction().add(R.id.fragment_container, fragment).commit()
+                }
+                Thread.sleep(4000)
+            }
+            runOnUiThread {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
+        thread.start()
     }
 }
+

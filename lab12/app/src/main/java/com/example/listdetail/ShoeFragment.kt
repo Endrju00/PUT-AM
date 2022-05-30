@@ -1,10 +1,7 @@
 package com.example.listdetail
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,8 +26,8 @@ class ShoeFragment: Fragment(R.layout.fragment_shoe) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        var view: View = inflater.inflate(R.layout.fragment_shoe, container, false)
+    ): View {
+        val view: View = inflater.inflate(R.layout.fragment_shoe, container, false)
         mSceneView = view
         mLoadView = view.findViewById(R.id.loader)
         mShoeView = view.findViewById(R.id.shoe)
@@ -42,22 +39,15 @@ class ShoeFragment: Fragment(R.layout.fragment_shoe) {
     }
 
     private fun startAnimation(view: View, duration: Long){
-        var heightAnimator: ObjectAnimator = ObjectAnimator.ofFloat(mLoadView, "scaleX", 1f, 20f)
+        val heightAnimator: ObjectAnimator = ObjectAnimator.ofFloat(mLoadView, "scaleX", 1f, 20f)
         heightAnimator.duration = duration*2
-        var  shoeScaleAnimator = ObjectAnimator.ofFloat(mShoeView, "rotation", 50f, 0f)
+        val  shoeScaleAnimator = ObjectAnimator.ofFloat(mShoeView, "rotation", 50f, 0f)
         shoeScaleAnimator.duration = duration
-        var shoeXAnimator = ObjectAnimator.ofFloat(mShoeView, "translationX", 300f, 0f)
+        val shoeXAnimator = ObjectAnimator.ofFloat(mShoeView, "translationX", 300f, 0f)
         shoeXAnimator.duration = duration
-        var shoeYAnimator = ObjectAnimator.ofFloat(mShoeView, "translationY", -150f, 0f)
+        val shoeYAnimator = ObjectAnimator.ofFloat(mShoeView, "translationY", -150f, 0f)
         shoeYAnimator.duration = duration
-        var animatorSet = AnimatorSet()
-        animatorSet.addListener(object: AnimatorListenerAdapter(){
-            override fun onAnimationEnd(animation: Animator?) {
-                // change activity
-                val intent = Intent(view.context, MainActivity::class.java)
-                startActivity(intent)
-            }
-        })
+        val animatorSet = AnimatorSet()
         animatorSet.play(heightAnimator).with(shoeScaleAnimator).with(shoeXAnimator).with(shoeYAnimator)
         animatorSet.start()
     }
