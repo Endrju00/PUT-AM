@@ -6,6 +6,9 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import okhttp3.*
+import org.json.JSONObject
+import org.json.JSONTokener
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), GestureDetector.OnGestureListener {
     private val easyRoutes = ListFragment.newInstance("easy")
@@ -15,6 +18,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), GestureDetector.
     private var x2: Float = 0.0f
     private var x1: Float = 0.0f
     private var tabId = 0
+    private val client = OkHttpClient()
+    private var loading = "Loading..."
 
     companion object {
         const val MIN_DISTANCE = 150
@@ -23,30 +28,47 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), GestureDetector.
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            replaceFragment(InfoFragment())
-        }
 
-        bottomNavigation = findViewById(R.id.bottom_navigation)
-        bottomNavigation.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.ic_home -> {
-                    replaceFragment(InfoFragment())
-                    tabId = 0
-                }
-                R.id.ic_easy -> {
-                    replaceFragment(easyRoutes)
-                    tabId = 1
-                }
-                R.id.ic_difficult -> {
-                    replaceFragment(difficultRoutes)
-                    tabId = 2
-                }
+        val thread = Thread {
+            run {
+                val url = "https://api.openweathermap.org/data/2.5/weather?q=poznan,pl&appid=2656690346203e6706d0b586863add0d"
+                val request = Request.Builder()
+                    .url(url)
+                    .build()
+                val response = client.newCall(request).execute()
+                val jsonObject = JSONTokener(response.body()?.string()).nextValue() as JSONObject
+                val main = jsonObject.getJSONObject("main")
+                val temperature = (main.getString("temp").toFloat().toInt() - 273).toString() + "°C Poznań"
+                loading = temperature
+                replaceFragment(InfoFragment.newInstance(temperature))
             }
-            true
-        }
+            runOnUiThread {
+                if (savedInstanceState == null) {
+                    replaceFragment(InfoFragment.newInstance(loading))
+                }
+                bottomNavigation = findViewById(R.id.bottom_navigation)
+                bottomNavigation.setOnNavigationItemSelectedListener {
+                    when(it.itemId) {
+                        R.id.ic_home -> {
+                            replaceFragment(InfoFragment.newInstance(loading))
+                            tabId = 0
+                        }
+                        R.id.ic_easy -> {
+                            replaceFragment(easyRoutes)
+                            tabId = 1
+                        }
+                        R.id.ic_difficult -> {
+                            replaceFragment(difficultRoutes)
+                            tabId = 2
+                        }
+                    }
+                    true
+                }
 
-        gestureDetector = GestureDetector(this, this)
+                gestureDetector = GestureDetector(this, this)
+            }
+        }
+        thread.start()
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -77,7 +99,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), GestureDetector.
                                 tabId = 2
                             }
                             2 -> {
-                                replaceFragment(InfoFragment())
+                                replaceFragment(InfoFragment.newInstance(loading))
                                 tabId = 0
                             }
                         }
@@ -88,7 +110,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), GestureDetector.
                                 tabId = 2
                             }
                             1 -> {
-                                replaceFragment(InfoFragment())
+                                replaceFragment(InfoFragment.newInstance(loading))
                                 tabId = 0
                             }
                             2 -> {

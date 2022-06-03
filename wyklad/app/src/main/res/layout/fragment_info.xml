@@ -21,12 +21,25 @@
         android:textColor="@color/textColor"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintTop_toBottomOf="@id/infotext"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        android:text="24°C Poznań "
+        android:textColor="@color/infoColor"
+        android:textSize="30sp" />
+
     <ScrollView
         android:id="@+id/scrollinfo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.8"
-        app:layout_constraintTop_toBottomOf="@+id/infotext"
+        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintTop_toBottomOf="@+id/temperature"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:gravity="center">
