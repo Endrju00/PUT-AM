@@ -1,6 +1,5 @@
 package com.example.listdetail
 
-import android.os.AsyncTask
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -9,9 +8,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
-import org.json.JSONObject
-import java.net.URL
-import kotlin.math.roundToInt
 
 class InfoFragment : Fragment(R.layout.fragment_info) {
     companion object {
