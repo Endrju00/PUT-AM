@@ -1,5 +1,6 @@
 package com.example.listdetail
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,29 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerAdapter(private val routes: Array<String>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-    private val descriptions = mapOf(
-        "Droga 1" to "Opis drogi 1\nDługość trasy: 2h\nTrasa przebiega przez miasta: Poznań",
-        "Droga 2" to "Opis drogi 2\nDługość trasy: 1h\nTrasa przebiega przez miasta: Poznań, Luboń",
-        "Droga 3" to "Opis drogi 3\nDługość trasy: 1.5h\nTrasa przebiega przez miasta: Warszawa",
-        "Droga 4" to "Opis drogi 4\nDługość trasy: 1h\nTrasa przebiega przez miasta: Kraków",
-        "Droga 5" to "Opis drogi 5\nDługość trasy: 2.5h\nTrasa przebiega przez miasta: Gdańsk, Gdynia, Sopot",
-        "Droga 6" to "Opis drogi 6\nDługość trasy: 0.5h\nTrasa przebiega przez miasta: Poznań",
-        "Droga 7" to "Opis drogi 7\nDługość trasy: 3.2h\nTrasa przebiega przez miasta: Poznań, Luboń",
-        "Droga 8" to "Opis drogi 8\nDługość trasy: 0.2h\nTrasa przebiega przez miasta: Warszawa",
-        "Droga 9" to "Opis drogi 9\nDługość trasy: 3h\nTrasa przebiega przez miasta: Gdańsk, Gdynia, Sopot",
-        "Droga 10" to "Opis drogi 10\nDługość trasy: 0.5h\nTrasa przebiega przez miasta: Poznań",
-        "Droga 11" to "Opis drogi 11\nDługość trasy: 3h\nTrasa przebiega przez miasta: Poznań, Luboń",
-        "Droga 12" to "Opis drogi 12\nDługość trasy: 1h\nTrasa przebiega przez miasta: Warszawa",
-        "Droga 13" to "Opis drogi 13\nDługość trasy: 3.5h\nTrasa przebiega przez miasta: Gdańsk, Gdynia, Sopot",
-        "Droga 14" to "Opis drogi 14\nDługość trasy: 2h\nTrasa przebiega przez miasta: Poznań",
-        "Droga 15" to "Opis drogi 15\nDługość trasy: 4h\nTrasa przebiega przez miasta: Poznań, Luboń",
-        "Droga 16" to "Opis drogi 16\nDługość trasy: 2h\nTrasa przebiega przez miasta: Warszawa",
-        "Droga 17" to "Opis drogi 17\nDługość trasy: 4.5h\nTrasa przebiega przez miasta: Gdańsk, Gdynia, Sopot",
-        "Droga 18" to "Opis drogi 18\nDługość trasy: 1.5h\nTrasa przebiega przez miasta: Poznań",
-        "Droga 19" to "Opis drogi 19\nDługość trasy: 5h\nTrasa przebiega przez miasta: Poznań, Luboń",
-        "Droga 20" to "Opis drogi 20\nDługość trasy: 1.2h\nTrasa przebiega przez miasta: Warszawa",
-    )
+class RecyclerAdapter(private val routes: Array<String>,private val context: Context): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
@@ -66,7 +45,7 @@ class RecyclerAdapter(private val routes: Array<String>): RecyclerView.Adapter<R
             itemView.setOnClickListener {
                 val position: Int = adapterPosition
                 val route = routes[position]
-                val description = descriptions[route]
+                val description = DB(context).getDescription(route)
                 val imageId = if ((route.filter{ it.isDigit() }).toInt()%2==0) 1 else 2
                 replaceFragment(DetailFragment.newInstance(route, description.toString(), imageId))
             }

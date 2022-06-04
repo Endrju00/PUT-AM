@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
 class ListFragment : Fragment(R.layout.fragment_list) {
 
     companion object {
@@ -27,12 +26,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val difficulty = this.arguments?.getString("difficulty")
-        var routes = arrayOf(
-            "Droga 1", "Droga 2", "Droga 3", "Droga 4", "Droga 5",
-            "Droga 6", "Droga 7", "Droga 8", "Droga 9", "Droga 10",
-            "Droga 11", "Droga 12", "Droga 13", "Droga 14", "Droga 15",
-            "Droga 16", "Droga 17", "Droga 18", "Droga 19", "Droga 20",
-        )
+        var routes = DB(requireContext()).allRouteNames
 
         when (difficulty) {
             "easy" -> routes = getEasyRoutes(routes)
@@ -41,7 +35,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = RecyclerAdapter(routes)
+        recyclerView.adapter = RecyclerAdapter(routes, requireContext())
     }
 
     private fun getDifficultRoutes(routes: Array<String>): Array<String> {
