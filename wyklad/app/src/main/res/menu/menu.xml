@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/ic_home"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ikona_wlasna_dom"
         android:title="Home" />
 
     <item
         android:id="@+id/ic_easy"
-        android:icon="@drawable/ic_baseline_child_friendly_24"
+        android:icon="@drawable/ikona_wlasna_but"
         android:title="Easy routes" />
 
     <item
         android:id="@+id/ic_difficult"
-        android:icon="@drawable/ic_baseline_directions_bike_24"
+        android:icon="@drawable/ikona_wlasna_czaszka"
         android:title="Difficult routes" />
 </menu>
